@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title>Edit Question</title>
+    <th:block th:include="layout/header"></th:block>
+</head>
+<body>
+<div class="container">
+    <h2>Edit Question</h2>
+    <div>
+        <form class="form-horizontal" th:action="@{/questions}" th:object="${question}" method="post">
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <input type="hidden" class="form-control" th:field="*{id}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Tag</label>
+
+                <input type="text" class="form-control" th:field="*{tag}"/>
+                <span class="error" th:if="${#fields.hasErrors('tag')}" th:errors="*{tag}"></span>
+
+            </div>
+            <div class="form-group">
+                <label for="level">Level</label>
+                <select multiple class="form-control" id="level">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="questionTextArea">Question</label>
+                <textarea class="form-control" id="questionTextArea" rows="4" th:field="*{question}"/>
+            </div>
+            <div class="form-group">
+                <label for="answerTextArea">Question</label>
+                <textarea class="form-control" id="answerTextArea" rows="4" th:field="*{answer}"/>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+</body>
+</html>
+
+
+

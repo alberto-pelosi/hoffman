@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title>Questions</title>
+    <th:block th:include="layout/header"></th:block>
+</head>
+<body>
+<div class="container">
+    <div th:if="${not #lists.isEmpty(questions)}">
+        <h2>All Questions</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>Tag</th>
+                <th>Question</th>
+                <th>Answer</th>
+                <th>Level</th>
+
+            </tr>
+            <tr th:each="question : ${questions}">
+                <td th:text="${question.id}">Id</td>
+                <td th:text="${question.tag}">Tag</td>
+                <td th:text="${question.question}">Question</td>
+                <td th:text="${question.answer}">Answer</td>
+                <td th:text="${question.level}">Level</td>
+
+                <td><a th:href="${'/questions/edit/' + question.id}" class="btn btn-default">Edit</a></td>
+                <td><a th:href="${'/questions/delete/' + question.id}" class="btn btn-danger">Delete</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
