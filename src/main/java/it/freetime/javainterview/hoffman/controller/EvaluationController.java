@@ -1,8 +1,11 @@
 package it.freetime.javainterview.hoffman.controller;
 
 import it.freetime.javainterview.hoffman.model.Evaluation;
+import it.freetime.javainterview.hoffman.model.Student;
 import it.freetime.javainterview.hoffman.service.EvaluationService;
+import it.freetime.javainterview.hoffman.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +22,9 @@ public class EvaluationController {
 
     @Autowired
     EvaluationService evaluationService;
+
+    @Autowired
+    StudentService studentService;
 
     @RequestMapping(path = "/evaluations", method  = RequestMethod.GET)
     public ModelAndView evaluations() {
@@ -39,9 +45,13 @@ public class EvaluationController {
     }
 
     @RequestMapping(path = "/evaluations/add", method  = RequestMethod.GET)
-    public ModelAndView addEvaluation(Evaluation e) {
+    public ModelAndView addEvaluation() {
+        Evaluation ef = new Evaluation();
+        List<Student> students = studentService.findAll();
+
         ModelAndView mw = new ModelAndView("edit-evaluation");
-        mw.addObject("evaluation", e);
+        mw.addObject("evaluation", ef);
+        mw.addObject("students", students);
 
         return mw;
 
@@ -50,7 +60,11 @@ public class EvaluationController {
     @RequestMapping(path = "/evaluations", method  = RequestMethod.POST)
     public ModelAndView saveEvaluation(@Valid Evaluation evaluation, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {
-            return new ModelAndView("edit-evaluation");
+            List<Student> students = studentService.findAll();
+            ModelAndView mw = new ModelAndView("edit-evaluation");
+            mw.addObject("students", students);
+            return mw;
+
         }
         evaluationService.save(evaluation);
         return new ModelAndView("redirect:/evaluations");
@@ -60,7 +74,9 @@ public class EvaluationController {
     @RequestMapping(path = "evaluations/edit/{id}", method = RequestMethod.GET)
     public ModelAndView editEvaluation(@PathVariable(value = "id") String id) {
         ModelAndView mw = new ModelAndView("edit-evaluation");
+        List<Student> students = studentService.findAll();
         mw.addObject("evaluation", evaluationService.findById(id).get());
+        mw.addObject("students", students);
         return mw;
     }
 

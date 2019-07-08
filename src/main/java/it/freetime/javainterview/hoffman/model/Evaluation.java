@@ -1,5 +1,7 @@
 package it.freetime.javainterview.hoffman.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -12,10 +14,11 @@ public class Evaluation {
 
     private Student student;
 
-    private String exercixe;
+    private String exercise;
 
     private BigDecimal evaluation;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date evaluationDate;
 
     public String getId() {
@@ -34,12 +37,12 @@ public class Evaluation {
         this.student = student;
     }
 
-    public String getExercixe() {
-        return exercixe;
+    public String getExercise() {
+        return exercise;
     }
 
-    public void setExercixe(String exercixe) {
-        this.exercixe = exercixe;
+    public void setExercise(String exercise) {
+        this.exercise = exercise;
     }
 
     public BigDecimal getEvaluation() {

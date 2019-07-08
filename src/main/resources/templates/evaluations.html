@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title>Questions</title>
+    <th:block th:include="layout/header"></th:block>
+</head>
+<body>
+<div class="container">
+    <div th:if="${not #lists.isEmpty(evaluations)}">
+        <h2>All Evaluations</h2>
+        <table class="table table-striped">
+
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Evaluation</th>
+
+            </tr>
+            <tr th:each="evaluation : ${evaluations}">
+                <td th:text="${evaluation.id}">Id</td>
+                <td th:text="${evaluation.evaluationDate}">Date</td>
+                <td th:text="${evaluation.student.name}">Name</td>
+                <td th:text="${evaluation.student.surname}">Surname</td>
+                <td th:text="${evaluation.evaluation}">Evaluation</td>
+
+                <td><a th:href="${'/evaluations/edit/' + evaluation.id}" class="btn btn-default">Edit</a></td>
+                <td><a th:href="${'/evaluations/delete/' + evaluation.id}" class="btn btn-danger">Delete</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
