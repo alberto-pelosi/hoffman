@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface StudentRepository extends MongoRepository<Student, String> {
 
-    List<Student> findAll();
+
 }

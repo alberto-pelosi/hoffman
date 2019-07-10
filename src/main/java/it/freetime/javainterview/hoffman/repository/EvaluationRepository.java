@@ -8,7 +8,5 @@ import java.util.Optional;
 
 public interface EvaluationRepository extends MongoRepository<Evaluation, String> {
 
-    List<Evaluation> findAll();
 
-    Optional<Evaluation> findById(String id);
 }
