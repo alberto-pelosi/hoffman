@@ -24,4 +24,11 @@ public class EvaluationService {
     }
 
     public void deleteById(String id) { evaluationRepository.deleteById(id);}
+
+    public List<Evaluation> findByStudent(String studentName, String studentSurname) {
+        return evaluationRepository.findByStudent(studentName, studentSurname);
+    }
+
+
+
 }
