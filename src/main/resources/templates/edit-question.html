@@ -22,14 +22,14 @@
 
             </div>
             <div class="form-group">
-                <label for="level">Level</label>
-                <select multiple class="form-control" id="level">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
+                <label>Level</label><br>
+
+                <input type="radio" th:field="*{level}" th:value="1" th:text="Facilissima" /><br>
+                <input type="radio" th:field="*{level}" th:value="2" th:text="Facile" /><br>
+                <input type="radio" th:field="*{level}" th:value="3" th:text="Media"/><br>
+                <input type="radio" th:field="*{level}" th:value="4" th:text="Difficile"/><br>
+                <input type="radio" th:field="*{level}" th:value="5" th:text="Difficilissima"/><br>
+
             </div>
             <div class="form-group">
                 <label for="questionTextArea">Question</label>
