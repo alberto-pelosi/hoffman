@@ -38,6 +38,13 @@
                                     </ul>
                                 </li>
                                 <li class="dropdown">
+                                    <a th:href="@{/teachers}" class="dropdown-toggle" data-toggle="dropdown">Teachers<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a th:href="@{/teachers}">All Teachers</a></li>
+                                        <li><a th:href="@{/teachers/add}">Add Teacher</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
                                     <a th:href="@{/evaluations}" class="dropdown-toggle" data-toggle="dropdown">Evaluations<b class="caret"></b></a>
                                     <ul class="dropdown-menu">
                                         <li><a th:href="@{/evaluations}">All Evaluations</a></li>

@@ -2,6 +2,8 @@ package it.freetime.javainterview.hoffman.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -12,7 +14,11 @@ public class Evaluation {
     public Evaluation() {
     }
 
+    @NotNull(message = "Student is mandatory")
     private Student student;
+
+    @NotNull(message = "Teacher is mandatory")
+    private Teacher teacher;
 
     private String exercise;
 
@@ -60,5 +66,9 @@ public class Evaluation {
     public void setEvaluationDate(Date evaluationDate) {
         this.evaluationDate = evaluationDate;
     }
+
+    public Teacher getTeacher() { return teacher; }
+
+    public void setTeacher(Teacher teacher) { this.teacher = teacher; }
 
 }

@@ -2,8 +2,10 @@ package it.freetime.javainterview.hoffman.controller;
 
 import it.freetime.javainterview.hoffman.model.Evaluation;
 import it.freetime.javainterview.hoffman.model.Student;
+import it.freetime.javainterview.hoffman.model.Teacher;
 import it.freetime.javainterview.hoffman.service.EvaluationService;
 import it.freetime.javainterview.hoffman.service.StudentService;
+import it.freetime.javainterview.hoffman.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,6 +27,9 @@ public class EvaluationController {
 
     @Autowired
     StudentService studentService;
+
+    @Autowired
+    TeacherService teacherService;
 
     @RequestMapping(path = "/evaluations", method  = RequestMethod.GET)
     public ModelAndView evaluations() {
@@ -48,10 +53,12 @@ public class EvaluationController {
     public ModelAndView addEvaluation() {
         Evaluation ef = new Evaluation();
         List<Student> students = studentService.findAll();
+        List<Teacher> teachers = teacherService.findAll();
 
         ModelAndView mw = new ModelAndView("edit-evaluation");
         mw.addObject("evaluation", ef);
         mw.addObject("students", students);
+        mw.addObject("teachers", teachers);
 
         return mw;
 
@@ -61,8 +68,10 @@ public class EvaluationController {
     public ModelAndView saveEvaluation(@Valid Evaluation evaluation, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {
             List<Student> students = studentService.findAll();
+            List<Teacher> teachers = teacherService.findAll();
             ModelAndView mw = new ModelAndView("edit-evaluation");
             mw.addObject("students", students);
+            mw.addObject("teachers", teachers);
             return mw;
 
         }
@@ -75,8 +84,10 @@ public class EvaluationController {
     public ModelAndView editEvaluation(@PathVariable(value = "id") String id) {
         ModelAndView mw = new ModelAndView("edit-evaluation");
         List<Student> students = studentService.findAll();
+        List<Teacher> teachers = teacherService.findAll();
         mw.addObject("evaluation", evaluationService.findById(id).get());
         mw.addObject("students", students);
+        mw.addObject("teachers", teachers);
         return mw;
     }
 

@@ -13,16 +13,20 @@
             <tr>
                 <th>Id</th>
                 <th>Date</th>
-                <th>Name</th>
-                <th>Surname</th>
+                <th>Student Name</th>
+                <th>Student Surname</th>
+                <th>Teacher Name</th>
+                <th>Teacher Surname</th>
                 <th>Evaluation</th>
 
             </tr>
             <tr th:each="evaluation : ${evaluations}">
                 <td th:text="${evaluation.id}">Id</td>
                 <td th:text="${evaluation.evaluationDate}">Date</td>
-                <td th:text="${evaluation.student.name}">Name</td>
-                <td th:text="${evaluation.student.surname}">Surname</td>
+                <td th:text="${evaluation.student.name}">Student Name</td>
+                <td th:text="${evaluation.student.surname}">Student Surname</td>
+                <td th:text="${evaluation.teacher.name}">Teacher Name</td>
+                <td th:text="${evaluation.teacher.surname}">Teacher Surname</td>
                 <td th:text="${evaluation.evaluation}">Evaluation</td>
 
                 <td><a th:href="${'/evaluations/edit/' + evaluation.id}" class="btn btn-default">Edit</a></td>
