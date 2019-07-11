@@ -4,6 +4,8 @@ import it.freetime.javainterview.hoffman.model.Evaluation;
 
 import it.freetime.javainterview.hoffman.repository.EvaluationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,6 +30,13 @@ public class EvaluationService {
     public List<Evaluation> findByStudent(String studentName, String studentSurname) {
         return evaluationRepository.findByStudent(studentName, studentSurname);
     }
+
+    public List<Evaluation> findAllSortedByDate() {
+
+        return evaluationRepository.findAll(Sort.by(Sort.Direction.ASC, "evaluationDate"));
+    }
+
+
 
 
 
